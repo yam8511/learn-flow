@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
@@ -21,9 +22,9 @@ func main() {
 	var isStudent bool = true
 
 	// 抓取 stdin
-	fmt.Println("input your name.")
+	fmt.Println("stdin: input your name.")
 	stdin, err := fmt.Scanf("%s", &name)
-	fmt.Println("stdin:", stdin, err)
+	fmt.Println("stdin: ", name, stdin, err)
 
 	// 印出到 stdout
 	fmt.Printf("stdout: My Name is %s, %d years old.\n", name, age)
@@ -39,10 +40,22 @@ func main() {
 	}
 
 	// 宣告陣列
+	nums := [...]int{1, 2, 3, 4, 5}
+	fmt.Println("array:", nums)
+
+	// 宣告切片
 	foods := []string{"meat", "egg", "fish", "cake", "milk"}
 
 	// append元素到陣列
 	foods = append(foods, "chocolate")
+
+	// 陣列長度
+	fmt.Println("slice: len:", len(foods))
+
+	// 複製陣列
+	copyFoods := make([]string, len(foods))
+	copy(copyFoods, foods)
+	fmt.Println("slice: copy:", copyFoods)
 
 	// 從陣列找出元素的index
 	index := -1
@@ -56,6 +69,13 @@ func main() {
 	foods = append(foods[:index], foods[index+1:]...)
 
 	fmt.Println("slice:", foods)
+
+	// 陣列 join
+	arr2str := strings.Join(foods, ", ")
+	fmt.Println("slice: join:", arr2str)
+
+	// 字串 split
+	fmt.Println("slice: split:", strings.Split(arr2str, ", "))
 
 	// 宣告字典
 	dicts := map[string]interface{}{
@@ -110,6 +130,9 @@ func main() {
 
 	// 字串包含
 	fmt.Println("str contains:", strings.Contains(" hello world ", "hello"))
+
+	// 隨機數字
+	fmt.Println("rand: [0,10):", rand.Intn(10))
 
 	// 環境變數
 	_ = os.Environ()
