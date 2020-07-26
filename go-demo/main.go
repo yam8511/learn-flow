@@ -12,34 +12,6 @@ import (
 	"time"
 )
 
-// 宣告自定義型態
-type Sex string
-
-// 宣告Enum
-const (
-	SexBoy  Sex = "boy"
-	SexGirl Sex = "girl"
-)
-
-// 宣告結構(物件)
-type Person struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-	Boy  Sex    `json:"boy"`
-}
-
-// 宣告結構的函式
-func (p *Person) Hello() string {
-	return "hello, my name is " + p.Name + "."
-}
-
-// interface (契約)
-type Animal interface {
-	Name() string
-	AsPet() bool
-	Feed(string)
-}
-
 // 宣告主程式
 func main() {
 	// 宣告變數
@@ -220,4 +192,32 @@ func main() {
 	}()
 	money = <-ch
 	fmt.Println("channel: receive:", money)
+}
+
+// 宣告自定義型態
+type Sex string
+
+// 宣告Enum
+const (
+	SexBoy  Sex = "boy"
+	SexGirl Sex = "girl"
+)
+
+// 宣告結構(物件)
+type Person struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+	Boy  Sex    `json:"boy"`
+}
+
+// 宣告結構的函式
+func (p *Person) Hello() string {
+	return "hello, my name is " + p.Name + "."
+}
+
+// interface (契約)
+type Animal interface {
+	Name() string
+	AsPet() bool
+	Feed(string)
 }
