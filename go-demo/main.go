@@ -16,7 +16,7 @@ import (
 // 宣告主程式
 func main() {
 	// 宣告變數
-	var name string = "Zuolar"
+	var name string
 	var age int = 25
 	var money float64 = 66666
 	var isStudent bool = true
@@ -46,15 +46,15 @@ func main() {
 	// 宣告切片
 	foods := []string{"meat", "egg", "fish", "cake", "milk"}
 
+	// 複製陣列
+	copyFoods := make([]string, len(foods))
+	copy(copyFoods, foods)
+
 	// append元素到陣列
 	foods = append(foods, "chocolate")
 
 	// 陣列長度
 	fmt.Println("slice: len:", len(foods))
-
-	// 複製陣列
-	copyFoods := make([]string, len(foods))
-	copy(copyFoods, foods)
 	fmt.Println("slice: copy:", copyFoods)
 
 	// 從陣列找出元素的index
@@ -62,13 +62,15 @@ func main() {
 	for i, v := range foods {
 		if v == "fish" {
 			index = i
+			break
 		}
 	}
+	fmt.Println("slice: index of fish:", index)
 
 	// 從陣列remove元素
 	foods = append(foods[:index], foods[index+1:]...)
 
-	fmt.Println("slice:", foods)
+	fmt.Println("slice: remove fish:", foods)
 
 	// 陣列 join
 	arr2str := strings.Join(foods, ", ")

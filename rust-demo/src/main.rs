@@ -3,14 +3,14 @@ use text_io::read;
 // 宣告主程式
 fn main() {
     // 宣告變數
-    let name: String = String::from("Zuolar");
+    let name: String;
     let age: isize = 25;
     let money: f64 = 66666.0;
-    let isStudent: bool = true;
+    let is_student: bool = true;
 
     // 抓取 stdin
     println!("stdin: input your name.");
-    let name: String = read!(); // 使用套件
+    name = read!(); // 使用套件
     println!("stdin: {}", name);
 
     // 印出到 stdout
@@ -20,7 +20,7 @@ fn main() {
     eprintln!("stderr: I pick ${}.", money);
 
     // 判斷式
-    if isStudent {
+    if is_student {
         println!("if: I'm a life students.");
     } else {
         println!("if: I'm a life person.");
@@ -30,6 +30,7 @@ fn main() {
     let nums = [1, 2, 3, 4, 5];
     println!("array: {:?}", nums);
 
+    // 宣告切片
     let mut foods = vec![
         String::from("meat"),
         String::from("egg"),
@@ -38,22 +39,27 @@ fn main() {
         String::from("milk"),
     ];
 
+    // 複製切片
+    let copy_foods = foods.clone();
+
     // append元素到陣列
     foods.append(&mut vec![String::from("chocolate")]);
 
     // 陣列長度
     println!("slice: len: {}", foods.len());
+    println!("slice: copy: {:?}", copy_foods);
 
     // 從陣列找出元素的index
-    // index := -1
-    // for i, v := range foods {
-    // 	if v == "fish" {
-    // 		index = i
-    // 	}
-    // }
+    let index = foods.iter().position(|r| r == "fish").unwrap();
+    println!("slice: index of fish: {}", index);
 
-    // // 從陣列remove元素
-    // foods = append(foods[:index], foods[index+1:]...)
+    // 從陣列remove元素
+    foods.remove(index);
+    println!("slice: remove fish: {:?}", foods);
 
-    // fmt.Println("slice:", foods)
+    let arr2str: String = foods.join(", ");
+    println!("slice: join: {}", arr2str);
+
+    let split = arr2str.split(", ");
+    println!("slice: split: {:?}", split); // 還不知道怎麼split
 }
